@@ -1,0 +1,120 @@
+{
+  "waypoints": [
+    {
+      "anchorPoint": {
+        "x": 2.3,
+        "y": 3.25
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 2.31804899614923,
+        "y": 3.25
+      },
+      "holonomicAngle": 180.0,
+      "isReversal": false,
+      "velOverride": null,
+      "isLocked": false,
+      "isStopPoint": false,
+      "stopEvent": {
+        "names": [
+          "highpos",
+          "reset"
+        ],
+        "executionBehavior": "parallel",
+        "waitBehavior": "deadline",
+        "waitTime": 0.5
+      }
+    },
+    {
+      "anchorPoint": {
+        "x": 1.65,
+        "y": 3.25
+      },
+      "prevControl": {
+        "x": 1.6129374492282147,
+        "y": 3.25
+      },
+      "nextControl": {
+        "x": 1.6870625507717851,
+        "y": 3.25
+      },
+      "holonomicAngle": 180.0,
+      "isReversal": false,
+      "velOverride": null,
+      "isLocked": false,
+      "isStopPoint": true,
+      "stopEvent": {
+        "names": [
+          "outtakecone",
+          "reset"
+        ],
+        "executionBehavior": "sequential",
+        "waitBehavior": "deadline",
+        "waitTime": 0.5
+      }
+    },
+    {
+      "anchorPoint": {
+        "x": 2.3,
+        "y": 3.25
+      },
+      "prevControl": {
+        "x": 2.280928620771148,
+        "y": 3.25
+      },
+      "nextControl": {
+        "x": 3.1536509602908303,
+        "y": 3.25
+      },
+      "holonomicAngle": 180.0,
+      "isReversal": false,
+      "velOverride": null,
+      "isLocked": false,
+      "isStopPoint": true,
+      "stopEvent": {
+        "names": [
+          "reset"
+        ],
+        "executionBehavior": "parallel",
+        "waitBehavior": "deadline",
+        "waitTime": 0.5
+      }
+    },
+    {
+      "anchorPoint": {
+        "x": 3.75,
+        "y": 3.25
+      },
+      "prevControl": {
+        "x": 3.7299858475300605,
+        "y": 3.25
+      },
+      "nextControl": null,
+      "holonomicAngle": 180.0,
+      "isReversal": false,
+      "velOverride": null,
+      "isLocked": false,
+      "isStopPoint": false,
+      "stopEvent": {
+        "names": [],
+        "executionBehavior": "parallel",
+        "waitBehavior": "before",
+        "waitTime": 0.0
+      }
+    }
+  ],
+  "markers": [
+    {
+      "position": 0.0,
+      "names": [
+        "outtakecube"
+      ]
+    },
+    {
+      "position": 1.854545454545351,
+      "names": [
+        "drivecube"
+      ]
+    }
+  ]
+}
