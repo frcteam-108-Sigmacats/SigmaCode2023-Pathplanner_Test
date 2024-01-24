@@ -68,18 +68,18 @@ public class SwerveSubsystem extends SubsystemBase {
   private Pose2d commMidPos = new Pose2d();
   private Pose2d commFarPos = new Pose2d();
 
-  private SlewRateLimiter xLim = new SlewRateLimiter(5);
-  private SlewRateLimiter yLim = new SlewRateLimiter(5);
-  private SlewRateLimiter rotLim = new SlewRateLimiter(0.5);
+  private SlewRateLimiter xLim = new SlewRateLimiter(5.0);
+  private SlewRateLimiter yLim = new SlewRateLimiter(5.0);
+  private SlewRateLimiter rotLim = new SlewRateLimiter(5.0);
 
   public BooleanSupplier fieldFlip = ()-> false;
   /** Creates a new SwerveSubsystem. */
   public SwerveSubsystem() {
     zeroHeading();
-    AutoBuilder.configureHolonomic(this::getPose, this::resetOdometry, this::getSpeeds, this::driveRobotRelative, new HolonomicPathFollowerConfig(new PIDConstants(5.0, 0, 0), new PIDConstants(0.5, 0, 0), 3.0, SwerveConstants.flOffset.getNorm(), new ReplanningConfig()), this.fieldFlip,  this);
+    AutoBuilder.configureHolonomic(this::getPose, this::resetOdometry, this::getSpeeds, this::driveRobotRelative, new HolonomicPathFollowerConfig(new PIDConstants(5.0, 0, 0), new PIDConstants(0.31, 0, 0), 3.0, SwerveConstants.flOffset.getNorm(), new ReplanningConfig()), this.fieldFlip,  this);
     gyro.getConfigurator().apply(new Pigeon2Configuration());
     gyro.clearStickyFaults();
-    odometry = new SwerveDriveOdometry(SwerveConstants.swerveKinematics, new Rotation2d(), getModulesPosition());
+    odometry = new SwerveDriveOdometry(SwerveConstants.swerveKinematics, getHeading(), getModulesPosition());
   }
   //Gets the robots heading based on gyro
   public Rotation2d getHeading(){
@@ -131,7 +131,7 @@ public class SwerveSubsystem extends SubsystemBase {
             fieldRelative ? ChassisSpeeds.fromFieldRelativeSpeeds(
                                 xLim.calculate(translation.getX()), 
                                 yLim.calculate(translation.getY()), 
-                                rotLim.calculate(rotation), 
+                                rotation, 
                                 getYaw()
                             )
                             : new ChassisSpeeds(
@@ -219,7 +219,7 @@ public class SwerveSubsystem extends SubsystemBase {
 
   public ChassisSpeeds getSpeeds(){
     SwerveModuleState[] states = getModuleStates();
-    return ChassisSpeeds.fromFieldRelativeSpeeds(SwerveConstants.swerveKinematics.toChassisSpeeds(states), getHeading());
+    return SwerveConstants.swerveKinematics.toChassisSpeeds(states);
   }
   public void driveFieldRelative(ChassisSpeeds fieldRelativeSpeeds){
     driveRobotRelative(ChassisSpeeds.fromFieldRelativeSpeeds(fieldRelativeSpeeds, getPose().getRotation()));

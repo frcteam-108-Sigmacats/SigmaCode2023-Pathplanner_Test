@@ -53,9 +53,9 @@ public class SwerveDriveTeleop extends Command {
     double xAxis = -driver.getLeftX();
     double rotAxis = -driver.getRightX();
 
-    yAxis = (Math.abs(yAxis) < SwerveConstants.deadband ? 0 : yLim.calculate(yAxis * 0.3));
-    xAxis = (Math.abs(xAxis) < SwerveConstants.deadband ? 0 : xLim.calculate(xAxis * 0.3));
-    rotAxis = (Math.abs(rotAxis) < SwerveConstants.deadband ? 0 : rotLim.calculate(rotAxis * 0.3));
+    yAxis = (Math.abs(yAxis) < SwerveConstants.deadband ? 0 : yAxis * 0.3);
+    xAxis = (Math.abs(xAxis) < SwerveConstants.deadband ? 0 : xAxis * 0.3);
+    rotAxis = (Math.abs(rotAxis) < SwerveConstants.deadband ? 0 : (rotAxis * 3.5));
 
     translation = new Translation2d(yAxis, xAxis).times(SwerveConstants.maxDriveSpeed);
     //rotation = rotAxis * SwerveConstants.maxTurnSpeed;

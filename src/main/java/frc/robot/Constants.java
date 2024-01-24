@@ -53,9 +53,9 @@ public final class Constants {
         public static double maxTurnSpeed = 2 * Math.PI;
 
         //Distance between the front and back wheel
-        public static double wheelBase = (24.5);
+        public static double wheelBase = Units.inchesToMeters(24.5);
         //Distance between the left and right wheel
-        public static double trackWidth = (21.625);
+        public static double trackWidth = Units.inchesToMeters(21.625);
 
         public static double wheelBaseMeters = Units.inchesToMeters(24.5);
         public static double trakcWidthMeters = Units.inchesToMeters(21.625);
